@@ -24,12 +24,12 @@ const og = `<svg xmlns="http://www.w3.org/2000/svg" width="1200" height="630" vi
   <rect width="1200" height="630" fill="url(#fade)"/>
   <defs><linearGradient id="fade" x1="0" x2="1"><stop offset="0.35" stop-color="#0b0b0c" stop-opacity="1"/><stop offset="1" stop-color="#0b0b0c" stop-opacity="0"/></linearGradient></defs>
   <g transform="translate(76 76) scale(0.8)">${lockup}</g>
-  <text x="80" y="230" font-family="DejaVu Sans Mono, monospace" font-size="20" fill="#a59c8e" letter-spacing="3">AI AGENTS FOR BUSINESSES AND INDIVIDUALS</text>
+  <text x="80" y="230" font-family="DejaVu Sans Mono, monospace" font-size="20" fill="#a59c8e" letter-spacing="3">AGENTIC AI SOLUTIONS FOR BUSINESSES AND INDIVIDUALS</text>
   <text font-family="DejaVu Sans, sans-serif" font-weight="500" font-size="62" fill="#f3eadb" letter-spacing="-1.5">
     <tspan x="80" y="322">Hand off the routine.</tspan>
-    <tspan x="80" y="398">Go <tspan fill="#ffb000">further</tspan>.</tspan>
+    <tspan x="80" y="398">Build what’s <tspan fill="#ffb000">next</tspan>.</tspan>
   </text>
-  <path d="M184 419 C 250 413, 320 423, 388 415" stroke="#ffb000" stroke-width="3" fill="none" stroke-linecap="round"/>
+  <path d="M462 419 C 500 413, 550 423, 592 415" stroke="#ffb000" stroke-width="3" fill="none" stroke-linecap="round"/>
   <text x="80" y="540" font-family="DejaVu Sans, sans-serif" font-size="26" fill="#c9bda9">Book a free AI audit · cogmorphic.com</text>
 </svg>`;
 

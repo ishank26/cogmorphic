@@ -9,7 +9,7 @@ import { homeFaq } from '../data/faq';
 import { faqSchema } from '../data/schema';
 
 const title = 'Cogmorphic: Agentic AI Consulting for Business and You';
-const description = 'Hand off the routine and go further. Cogmorphic sets up AI agents in the tools you already use. Book a free AI audit.';
+const description = 'Hand off the routine and build what’s next. Cogmorphic sets up AI agents in the tools you already use. Book a free AI audit.';
 
 const leaks = [
   ['New service idea', 'On hold for months'],
@@ -42,9 +42,9 @@ const svg = (paths: string) => `<svg viewBox="0 0 24 24" aria-hidden="true" focu
   <section class="hero" aria-labelledby="hero-title">
     <ShaderBg variant="hero" />
     <div class="wrap">
-      <h1 id="hero-title" class="label">AI agent setup for businesses and individuals</h1>
-      <p class="display"><span class="line">Hand off the routine.</span> <span class="line">Go&nbsp;<span class="rough" data-rough="hero">further</span>.</span></p>
-      <p class="lede">Cogmorphic sets up AI agents in the tools you already use, so your time goes to new opportunities.</p>
+      <h1 id="hero-title" class="label">Agentic AI solutions for businesses and individuals</h1>
+      <p class="display"><span class="line">Hand off the routine.</span> <span class="line">Build what’s&nbsp;<span class="rough" data-rough="hero">next</span>.</span></p>
+      <p class="lede">Cogmorphic sets up AI agents in the tools you already use, so your time and budget go to growth.</p>
       <div class="hero__actions">
         <a class="btn" href={cta.href}>{cta.label}</a>
         <a class="textlink" href="#what">See how it works <span aria-hidden="true">↓</span></a>
@@ -57,7 +57,7 @@ const svg = (paths: string) => `<svg viewBox="0 0 24 24" aria-hidden="true" focu
     <div class="wrap split split--need">
       <div>
         <h2 id="need" class="label">Sound familiar?</h2>
-        <p class="statement">Big opportunities wait while the day fills up.</p>
+        <p class="statement"><span class="line">The day fills up.</span> <span class="line">Big ideas wait.</span></p>
       </div>
       <ul class="pile" aria-label="Opportunities waiting for time">
         {leaks.map(([what, state]) => <li><span>{what}</span><em>{state}</em></li>)}

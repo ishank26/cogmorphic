@@ -353,3 +353,5 @@ p { margin: 0; }
   .js .dial.is-set .dial__needle { transform: rotate(30deg); }
 }
 @media (forced-colors: active) { .dial__track, .dial__set, .dial__mark, .dial__needle { stroke: CanvasText; } .dial__needle circle { fill: CanvasText; } }
+
+.statement .line{display:block}
