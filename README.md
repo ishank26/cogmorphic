@@ -18,8 +18,8 @@ A fast, static [Astro](https://astro.build) site, ready for Cloudflare Pages.
 Everything you need to change is in **`src/site.ts`**:
 
 - `bookingUrl`: your Cal.com booking link. Until it's set, the audit page shows a marked placeholder.
-- `formAction`: your Formspree endpoint. Until it's set, the form shows a marked placeholder and sends nothing.
-- `email`: create `hello@cogmorphic.com` first, or change it.
+- `web3formsKey`: your free Web3Forms access key (web3forms.com emails it to you). Paste it here yourself. Until it's set, the form shows a marked placeholder and sends nothing.
+- `email`: set up free forwarding for `hello@cogmorphic.com` with Cloudflare Email Routing (the domain's DNS has to be on Cloudflare first), or change it.
 - `founderFirstName`, `founderFullName`: shown in the About section and added to the search schema.
 - `linkedinCompany`, `linkedinFounder`, `phone`: optional; empty values are hidden.
 - `callLength`: confirm the free call length (default "20-minute").

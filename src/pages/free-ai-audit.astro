@@ -24,7 +24,8 @@ const schema = [
   },
   faqSchema(faq),
 ];
-const formLive = Boolean(site.formAction);
+const formLive = Boolean(site.web3formsKey);
+const formEndpoint = 'https://api.web3forms.com/submit';
 const bookingLive = Boolean(site.bookingUrl);
 ---
 <Base title={title} description={description} schema={schema}>
@@ -53,9 +54,9 @@ const bookingLive = Boolean(site.bookingUrl);
     <div class="wrap split split--top">
       <div>
         <h2 id="book-heading" class="label">Book your free AI audit</h2>
-        <form class="form" method="POST" action={formLive ? site.formAction : undefined} data-form-live={formLive ? 'true' : 'false'}>
+        <form class="form" method="POST" action={formLive ? formEndpoint : undefined} data-form-live={formLive ? 'true' : 'false'}>
           {!formLive && (
-            <p class="notice" role="note"><strong>Placeholder:</strong> form not connected yet. Add the Formspree address in src/site.ts.</p>
+            <p class="notice" role="note"><strong>Placeholder:</strong> form not connected yet. Add the Web3Forms access key in src/site.ts.</p>
           )}
           <div class="row">
             <label for="f-name">Name<input id="f-name" name="name" autocomplete="name" required /></label>
@@ -76,7 +77,10 @@ const bookingLive = Boolean(site.bookingUrl);
               </select>
             </label>
           </div>
-          <input type="text" name="_gotcha" tabindex="-1" autocomplete="off" aria-hidden="true" style="position:absolute;left:-9999px" />
+          {formLive && <input type="hidden" name="access_key" value={site.web3formsKey} />}
+          <input type="hidden" name="subject" value="New free AI audit request" />
+          <input type="hidden" name="from_name" value="Cogmorphic website" />
+          <input type="checkbox" name="botcheck" tabindex="-1" autocomplete="off" aria-hidden="true" style="display:none" />
           <p class="actions"><button class="btn" type="submit">Send and pick a time</button></p>
           <p class="note">Used only to arrange your audit. <a href="/privacy/">Privacy</a></p>
           <div role="status"><p class="notice" data-form-status hidden></p></div>
@@ -117,7 +121,8 @@ const bookingLive = Boolean(site.bookingUrl);
     status.textContent = 'Sending...';
     try {
       const res = await fetch(form.action, { method: 'POST', body: new FormData(form), headers: { Accept: 'application/json' } });
-      if (!res.ok) throw new Error();
+      const data = await res.json().catch(() => ({}));
+      if (!res.ok || data.success === false) throw new Error();
       form.reset();
       status.textContent = 'Thanks, got it. Now pick a time in the calendar.';
       document.getElementById('calendar')?.scrollIntoView({ behavior: 'smooth' });
