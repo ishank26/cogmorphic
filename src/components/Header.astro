@@ -1,0 +1,26 @@
+---
+import LogoMark from './LogoMark.astro';
+import { cta } from '../site';
+const path = Astro.url.pathname;
+const links = [
+  { href: '/ai-agents-for-business/', label: 'Business' },
+  { href: '/personal-ai-agents/', label: 'Individuals' },
+];
+---
+<header class="site-header">
+  <div class="wrap">
+    <a class="brand" href="/" aria-label="Cogmorphic home"><LogoMark /></a>
+    <nav class="nav" aria-label="Main">
+      {links.map((l) => (
+        <a class="navlink" href={l.href} aria-current={path === l.href ? 'page' : undefined}>{l.label}</a>
+      ))}
+      <details class="menu">
+        <summary>Menu</summary>
+        <div class="menu__panel">
+          {links.map((l) => <a href={l.href} aria-current={path === l.href ? 'page' : undefined}>{l.label}</a>)}
+        </div>
+      </details>
+      <a class="navcta" href={cta.href}>Free audit</a>
+    </nav>
+  </div>
+</header>

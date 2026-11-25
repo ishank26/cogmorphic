@@ -1,0 +1,18 @@
+---
+/**
+ * Dithered amber background. A CSS still shows first (fast, no layout shift);
+ * on larger screens the Paper Shaders animation fades in after the page loads.
+ * Skipped for reduced-motion visitors and on phones.
+ */
+interface Props { variant?: 'hero' | 'final' }
+const { variant = 'hero' } = Astro.props;
+---
+<div class="fx-bg" data-shader={variant} aria-hidden="true">
+  <div class="fx-still"></div>
+  <div class="fx-canvas"></div>
+  <div class="fx-shade"></div>
+</div>
+<script>
+  import { mountShaders } from '../scripts/shader';
+  mountShaders();
+</script>
