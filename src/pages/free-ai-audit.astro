@@ -26,16 +26,32 @@ const schema = [
 ];
 const formLive = Boolean(site.web3formsKey);
 const formEndpoint = 'https://api.web3forms.com/submit';
-const bookingLive = Boolean(site.bookingUrl);
 // Works with a Google Calendar booking page or a Cal.com link.
-// Google's embed link (calendar.google.com/.../appointments/schedules/...) shows the
-// calendar in the page; Google's short share link (calendar.app.google/...) opens it in a new tab.
-const bookingHost = bookingLive ? new URL(site.bookingUrl).hostname : '';
-const isGoogleEmbed = bookingHost === 'calendar.google.com';
-const isGoogleLink = bookingHost === 'calendar.app.google';
-const bookingEmbedSrc = isGoogleEmbed
-  ? `${site.bookingUrl}${site.bookingUrl.includes('?') ? '&' : '?'}gv=true`
-  : `${site.bookingUrl}?embed=true&theme=dark`;
+// Google's embed link (calendar.google.com/calendar/appointments/schedules/...) shows the
+// calendar in the page; any other Google link (e.g. calendar.app.google/...) opens in a new tab.
+// A value that isn't a valid https URL falls back to the placeholder, with a build warning.
+let bookingUrl: URL | null = null;
+const bookingRaw = (site.bookingUrl || '').trim();
+if (bookingRaw) {
+  try {
+    bookingUrl = new URL(bookingRaw);
+    if (bookingUrl.protocol !== 'https:') throw new Error('not https');
+  } catch {
+    bookingUrl = null;
+    console.warn(`[free-ai-audit] site.bookingUrl is not a valid https URL: "${bookingRaw}". Showing the placeholder.`);
+  }
+}
+const bookingLive = Boolean(bookingUrl);
+const bookingHost = bookingUrl?.hostname ?? '';
+const isGoogleEmbed = bookingHost === 'calendar.google.com' && bookingUrl!.pathname.includes('/appointments/schedules/');
+const isGoogleLink = !isGoogleEmbed && (bookingHost === 'calendar.app.google' || bookingHost === 'calendar.google.com');
+let bookingEmbedSrc = '';
+if (bookingUrl && !isGoogleLink) {
+  const u = new URL(bookingUrl.href);
+  if (isGoogleEmbed) u.searchParams.set('gv', 'true');
+  else { u.searchParams.set('embed', 'true'); u.searchParams.set('theme', 'dark'); }
+  bookingEmbedSrc = u.href;
+}
 ---
 <Base title={title} description={description} schema={schema}>
   <section class="page-hero">
@@ -95,11 +111,11 @@ const bookingEmbedSrc = isGoogleEmbed
           <div role="status"><p class="notice" data-form-status hidden></p></div>
         </form>
       </div>
-      <div class="booking" id="calendar">
+      <div class={bookingEmbedSrc ? 'booking booking--frame' : 'booking'} id="calendar">
         {bookingLive && isGoogleLink ? (
           <div>
             <p class="booking__title">Pick a time that suits you</p>
-            <a class="btn" href={site.bookingUrl} target="_blank" rel="noopener">Open the calendar<span class="sr-only"> (opens in a new tab)</span></a>
+            <a class="btn" href={bookingUrl!.href} target="_blank" rel="noopener">Open the calendar <span aria-hidden="true">↗</span><span class="sr-only"> (opens in a new tab)</span></a>
           </div>
         ) : bookingLive ? (
           <iframe src={bookingEmbedSrc} title="Book a free AI audit" loading="lazy" class={isGoogleEmbed ? 'booking__frame booking__frame--light' : 'booking__frame'} />
