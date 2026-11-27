@@ -25,9 +25,12 @@ export const site = {
   // TODO: confirm the length of the free audit call.
   callLength: '20-minute',
 
-  // TODO BOOKING PLACEHOLDER: paste your Cal.com booking link here,
-  // e.g. 'https://cal.com/your-name/free-ai-audit'. While empty, the site
-  // shows a clearly marked placeholder instead of a calendar.
+  // TODO BOOKING PLACEHOLDER: paste your Google Calendar booking page link here.
+  // Best: the embed link from Google Calendar (Share > Website embed), which starts
+  // 'https://calendar.google.com/calendar/appointments/schedules/'. It shows the
+  // calendar right on the page. The short share link ('https://calendar.app.google/...')
+  // also works and opens the calendar in a new tab. A Cal.com link works too.
+  // While empty, the site shows a clearly marked placeholder instead of a calendar.
   bookingUrl: '',
 
   // TODO FORM PLACEHOLDER: paste your Web3Forms access key here (free, 250

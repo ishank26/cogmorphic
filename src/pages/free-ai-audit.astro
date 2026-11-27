@@ -27,6 +27,15 @@ const schema = [
 const formLive = Boolean(site.web3formsKey);
 const formEndpoint = 'https://api.web3forms.com/submit';
 const bookingLive = Boolean(site.bookingUrl);
+// Works with a Google Calendar booking page or a Cal.com link.
+// Google's embed link (calendar.google.com/.../appointments/schedules/...) shows the
+// calendar in the page; Google's short share link (calendar.app.google/...) opens it in a new tab.
+const bookingHost = bookingLive ? new URL(site.bookingUrl).hostname : '';
+const isGoogleEmbed = bookingHost === 'calendar.google.com';
+const isGoogleLink = bookingHost === 'calendar.app.google';
+const bookingEmbedSrc = isGoogleEmbed
+  ? `${site.bookingUrl}${site.bookingUrl.includes('?') ? '&' : '?'}gv=true`
+  : `${site.bookingUrl}?embed=true&theme=dark`;
 ---
 <Base title={title} description={description} schema={schema}>
   <section class="page-hero">
@@ -87,12 +96,17 @@ const bookingLive = Boolean(site.bookingUrl);
         </form>
       </div>
       <div class="booking" id="calendar">
-        {bookingLive ? (
-          <iframe src={`${site.bookingUrl}?embed=true&theme=dark`} title="Book a free AI audit" loading="lazy" style="width:100%;min-height:640px;border:0" />
+        {bookingLive && isGoogleLink ? (
+          <div>
+            <p class="booking__title">Pick a time that suits you</p>
+            <a class="btn" href={site.bookingUrl} target="_blank" rel="noopener">Open the calendar<span class="sr-only"> (opens in a new tab)</span></a>
+          </div>
+        ) : bookingLive ? (
+          <iframe src={bookingEmbedSrc} title="Book a free AI audit" loading="lazy" class={isGoogleEmbed ? 'booking__frame booking__frame--light' : 'booking__frame'} />
         ) : (
           <div>
             <p class="notice"><strong>Placeholder:</strong> booking calendar goes here.</p>
-            <p class="muted mt-20">Add your Cal.com link in src/site.ts.</p>
+            <p class="muted mt-20">Add your booking link in src/site.ts.</p>
           </div>
         )}
       </div>
