@@ -1,0 +1,128 @@
+---
+import Base from '../layouts/Base.astro';
+import Faq from '../components/Faq.astro';
+import { site } from '../site';
+import { faqSchema, breadcrumbs } from '../data/schema';
+
+const path = '/free-ai-audit/';
+const title = 'Free AI Audit: Find Where AI Agents Fit, Cogmorphic';
+const description = 'A free video call and a written list of the top three places AI agents could save you time. No obligation.';
+const faq = [
+  { q: 'Is the AI audit really free?', a: `Yes. The ${site.callLength} call and the one-page report are free, with no obligation to buy anything after.` },
+  { q: 'What is an AI readiness assessment?', a: 'It is a look at how you work today and where AI agents would save you the most time. The free AI audit is a short, practical version: it names your top three opportunities and what each would take.' },
+  { q: 'What do I need to prepare?', a: 'Nothing formal. Think of the tasks you or your team repeat every week, and which tools you use for them.' },
+  { q: 'Do you need access to my accounts for the audit?', a: 'No. The audit is a conversation. Nobody needs your logins to tell you where agents fit.' },
+];
+const schema = [
+  breadcrumbs([{ name: 'Free AI audit', path }]),
+  {
+    '@type': 'WebPage',
+    name: 'Free AI audit',
+    url: new URL(path, site.url).href,
+    description,
+    about: { '@id': `${site.url}/#service` },
+  },
+  faqSchema(faq),
+];
+const formLive = Boolean(site.formAction);
+const bookingLive = Boolean(site.bookingUrl);
+---
+<Base title={title} description={description} schema={schema}>
+  <section class="page-hero">
+    <div class="wrap">
+      <nav class="crumbs" aria-label="Breadcrumb"><a href="/">Home</a> / Free AI audit</nav>
+      <h1>Your free AI audit</h1>
+      <p class="lede">A free {site.callLength} video call to find where AI agents could save you or your team time, then a written list of what to fix first.</p>
+      <a class="btn" href="#book">Book my free audit</a>
+      <p class="trust"><span>Free</span> · <span>No obligation</span> · <span>For businesses and individuals</span></p>
+    </div>
+  </section>
+
+  <section class="section" aria-labelledby="check">
+    <div class="wrap">
+      <h2 id="check" class="label">What the audit covers</h2>
+      <div class="rows">
+        <div class="row-item"><h3>What we check</h3><p>The steps you repeat, the tools you use and the handoffs between them, response times, and which tasks an AI agent could take.</p></div>
+        <div class="row-item"><h3>What you get</h3><p>A one-page report with your top three fixes, what each would cost, and what you can do yourself.</p></div>
+        <div class="row-item"><h3>What it costs</h3><p>Nothing. No obligation to buy anything after.</p></div>
+      </div>
+    </div>
+  </section>
+
+  <section class="section" id="book" aria-labelledby="book-heading">
+    <div class="wrap split split--top">
+      <div>
+        <h2 id="book-heading" class="label">Book your free AI audit</h2>
+        <form class="form" method="POST" action={formLive ? site.formAction : undefined} data-form-live={formLive ? 'true' : 'false'}>
+          {!formLive && (
+            <p class="notice" role="note"><strong>Placeholder:</strong> form not connected yet. Add the Formspree address in src/site.ts.</p>
+          )}
+          <div class="row">
+            <label for="f-name">Name<input id="f-name" name="name" autocomplete="name" required /></label>
+            <label for="f-email">Email<input id="f-email" name="email" type="email" autocomplete="email" required /></label>
+          </div>
+          <div class="row">
+            <label for="f-business">Business (optional)<input id="f-business" name="business" autocomplete="organization" /></label>
+            <label for="f-phone">Phone (optional)<input id="f-phone" name="phone" type="tel" autocomplete="tel" /></label>
+          </div>
+          <div class="row">
+            <label for="f-website">Website (optional)<input id="f-website" name="website" type="url" inputmode="url" placeholder="https://" /></label>
+            <label for="f-time">Best time to call
+              <select id="f-time" name="best_time">
+                <option>Morning</option>
+                <option>Midday</option>
+                <option>Afternoon</option>
+                <option>Evening</option>
+              </select>
+            </label>
+          </div>
+          <input type="text" name="_gotcha" tabindex="-1" autocomplete="off" aria-hidden="true" style="position:absolute;left:-9999px" />
+          <p class="actions"><button class="btn" type="submit">Send and pick a time</button></p>
+          <p class="note">Used only to arrange your audit. <a href="/privacy/">Privacy</a></p>
+          <p class="notice" data-form-status hidden></p>
+        </form>
+      </div>
+      <div class="booking" id="calendar">
+        {bookingLive ? (
+          <iframe src={`${site.bookingUrl}?embed=true&theme=dark`} title="Book a free AI audit" loading="lazy" style="width:100%;min-height:640px;border:0" />
+        ) : (
+          <div>
+            <p class="notice"><strong>Placeholder:</strong> booking calendar goes here.</p>
+            <p class="muted mt-20">Add your Cal.com link in src/site.ts.</p>
+          </div>
+        )}
+      </div>
+    </div>
+  </section>
+
+  <section class="section" aria-labelledby="audit-faq">
+    <div class="wrap">
+      <h2 id="audit-faq" class="label">Free AI audit: questions</h2>
+      <Faq items={faq} />
+      <p class="muted mt-40">Read more about <a href="/ai-agents-for-business/">AI agents for business</a> or <a href="/personal-ai-agents/">personal AI agents</a>.</p>
+    </div>
+  </section>
+</Base>
+<script>
+  const form = document.querySelector<HTMLFormElement>('form[data-form-live]');
+  const status = form?.querySelector<HTMLElement>('[data-form-status]');
+  form?.addEventListener('submit', async (e) => {
+    e.preventDefault();
+    if (!status) return;
+    status.hidden = false;
+    if (form.dataset.formLive !== 'true') {
+      status.textContent = 'This form is a placeholder and did not send. It will work once the form service is connected.';
+      return;
+    }
+    status.textContent = 'Sending...';
+    try {
+      const res = await fetch(form.action, { method: 'POST', body: new FormData(form), headers: { Accept: 'application/json' } });
+      if (!res.ok) throw new Error();
+      form.reset();
+      status.textContent = 'Thanks, got it. Now pick a time in the calendar.';
+      document.getElementById('calendar')?.scrollIntoView({ behavior: 'smooth' });
+    } catch {
+      status.textContent = 'Sorry, that did not send. Please email us instead.';
+    }
+  });
+</script>

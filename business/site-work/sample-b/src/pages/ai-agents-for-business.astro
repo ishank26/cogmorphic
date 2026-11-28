@@ -1,0 +1,73 @@
+---
+import Base from '../layouts/Base.astro';
+import Faq from '../components/Faq.astro';
+import FinalCta from '../components/FinalCta.astro';
+import { site, cta } from '../site';
+import { faqSchema, breadcrumbs, serviceSchema } from '../data/schema';
+
+const path = '/ai-agents-for-business/';
+const title = 'AI Agents for Business: Setup and Training, Cogmorphic';
+const description = 'Find where AI agents save time and open new revenue, get them set up safely, and train your team. Start with a free AI audit.';
+const uses = [
+  { h: 'Lead intake and follow-up', p: 'Reply to new inquiries in minutes and hand warm leads to a person.' },
+  { h: 'Scheduling', p: 'Offer times, book meetings and send reminders without the back and forth.' },
+  { h: 'Spotting trends', p: 'Watch sales and messages for what customers want next.' },
+  { h: 'Launching offers', p: 'Draft and test a new service or promo in days.' },
+  { h: 'Reporting', p: 'Pull numbers from your tools and draft the weekly report.' },
+  { h: 'Customer questions', p: 'Draft answers to common questions for your team to check and send.' },
+];
+const faq = [
+  { q: 'What is the difference between an AI chatbot and an AI agent?', a: 'A chatbot answers questions in a chat window. An AI agent takes steps in your tools, like replying to a lead, spotting a trend or booking a meeting, within limits you set.' },
+  { q: 'Which business processes are best for AI agents?', a: 'Work with clear rules, like lead intake, scheduling and reports, plus watching for trends and new openings. The free AI audit ranks where agents save time and open new revenue.' },
+  { q: 'Does my team stay in charge?', a: 'Yes. Agents handle the routine steps, and your team approves what matters.' },
+  { q: 'Do I need new software?', a: 'Usually not. We start with the tools you already use and only suggest something new when it clearly pays for itself.' },
+  { q: 'How do you set up AI agents safely?', a: 'Agents only get access to the tools you approve, and only as much access as each task needs. A person approves anything that matters, and we test each workflow with you before it goes live.' },
+  { q: 'How do you train my team?', a: 'In plain language, with hands-on practice on your own workflows, so your team knows what the agents do, when to step in, and how to ask for changes.' },
+];
+const schema = [
+  breadcrumbs([{ name: 'AI agents for business', path }]),
+  serviceSchema({ name: 'AI agents for business', path, description, audience: 'Small and mid-sized businesses' }),
+  faqSchema(faq),
+];
+---
+<Base title={title} description={description} schema={schema}>
+  <section class="page-hero">
+    <div class="wrap">
+      <nav class="crumbs" aria-label="Breadcrumb"><a href="/">Home</a> / Business</nav>
+      <h1>AI agents for business</h1>
+      <p class="lede">We find where AI agents save time and open new revenue, set them up in your tools, and train your team.</p>
+      <a class="btn" href={cta.href}>{cta.label}</a>
+      <p class="trust"><span>Free {site.callLength} call</span> · <span>No obligation</span> · <span>You approve every change</span></p>
+    </div>
+  </section>
+
+  <section class="section" aria-labelledby="uses">
+    <div class="wrap">
+      <h2 id="uses" class="label">Which business processes can AI agents run?</h2>
+      <div class="rows">
+        {uses.map((u) => <div class="row-item"><h3>{u.h}</h3><p>{u.p}</p></div>)}
+      </div>
+    </div>
+  </section>
+
+  <section class="section" aria-labelledby="how">
+    <div class="wrap">
+      <h2 id="how" class="label">How it works</h2>
+      <ol class="steps">
+        <li><h3>Audit</h3><p>A free call and a one-page report with your top three openings.</p></li>
+        <li><h3>Set up</h3><p>We reshape the process and set up the agents you pick.</p></li>
+        <li><h3>Run</h3><p>Team training, then monthly check-ins.</p></li>
+      </ol>
+    </div>
+  </section>
+
+  <section class="section" aria-labelledby="biz-faq">
+    <div class="wrap">
+      <h2 id="biz-faq" class="label">AI agents for business: questions</h2>
+      <Faq items={faq} />
+      <p class="muted mt-40">Just for you? See <a href="/personal-ai-agents/">personal AI agent setup</a>.</p>
+    </div>
+  </section>
+
+  <FinalCta heading="Find where AI agents fit in your business." text="Free AI audit. Your top three openings, in writing." />
+</Base>

@@ -1,0 +1,135 @@
+---
+/**
+ * The one pattern every AI agent follows, shown on many kinds of business.
+ * Every word is plain HTML (search engines and screen readers get all of it);
+ * the script only lights up the steps and rotates the examples.
+ */
+const stages = [
+  { key: 'understand', label: 'Understands', icon: '<path d="M9 18h6M10 21h4M12 3a6 6 0 0 0-3.6 10.8c.7.5 1.1 1.3 1.1 2.1V16h5v-.1c0-.8.4-1.6 1.1-2.1A6 6 0 0 0 12 3z"/>' },
+  { key: 'check', label: 'Checks your tools', icon: '<circle cx="11" cy="11" r="6"/><path d="m20 20-4.5-4.5"/>' },
+  { key: 'act', label: 'Does the work', icon: '<path d="M13 3 5 14h6l-1 7 8-11h-6l1-7z"/>' },
+  { key: 'approve', label: 'You approve', icon: '<circle cx="12" cy="8" r="4"/><path d="M4 21c1.5-4 4.5-6 8-6s6.5 2 8 6"/>' },
+  { key: 'done', label: 'Done', icon: '<path d="m5 12.5 4.5 4.5L19 7"/>' },
+];
+
+const examples: { id: string; act?: boolean; tab: string; from: string; msg: string; s: string[] }[] = [
+  { id: 'services', act: true, tab: 'Services', from: 'New lead', msg: 'Fills in your website form at 10 PM.',
+    s: ['Good fit, wants to talk', 'Client list and calendar', 'Books a call, sends your intake form', 'You review before any advice', 'New client, no back-and-forth'] },
+  { id: 'retail', act: true, tab: 'Retail', from: 'Sales data', msg: 'Rain jackets selling 3x faster this week.',
+    s: ['Demand is rising', 'Stock, suppliers and past sales', 'Drafts a reorder and a promo', 'You approve the order', 'Trend caught in time'] },
+  { id: 'building', tab: 'Buildings', from: 'Leak sensor', msg: 'Small drip under the sink in unit 2B.',
+    s: ['Slow leak, worth a plumber', 'Floor plan, valves and vendors', 'Finds a plumber, drafts a note to the tenant', 'You OK the visit', 'Fixed early, no big repair'] },
+  { id: 'contractor', act: true, tab: 'Contractors', from: 'Homeowner', msg: 'Sends three roof photos after the storm.',
+    s: ['Storm damage, wants a quote', 'Calendar, price list, past jobs', 'Books an inspection, drafts the estimate', 'You sign off the price', 'Quote out the same day'] },
+  { id: 'personal', tab: 'Your own inbox', from: 'School', msg: 'Field trip form and $20 due Friday.',
+    s: ['Needs a signature and payment', 'Calendar and family files', 'Fills in the form, sets a reminder', 'You sign and pay', 'Handled before Friday'] },
+];
+const svg = (paths: string) => `<svg viewBox="0 0 24 24" aria-hidden="true" focusable="false">${paths}</svg>`;
+---
+<div class="loop" data-loop>
+  <div class="loop__tabs" role="tablist" aria-label="Examples by kind of business">
+    {examples.map((e, i) => (
+      <button type="button" role="tab" id={`ex-${e.id}`} aria-controls={`exp-${e.id}`} aria-selected={i === 0 ? 'true' : 'false'} tabindex={i === 0 ? 0 : -1}>{e.tab}</button>
+    ))}
+  </div>
+  <div class="loop__card">
+    <div class="loop__panels">
+      {examples.map((e, i) => (
+        <div class="loop__panel" role="tabpanel" id={`exp-${e.id}`} aria-labelledby={`ex-${e.id}`} hidden={i !== 0} tabindex={i === 0 ? 0 : undefined}>
+          <p class="loop__msg"><span class="loop__from">{e.from}</span> {e.act ? e.msg : `“${e.msg}”`}</p>
+          <ol class="loop__steps">
+            {stages.map((st, k) => (
+              <li class={`is-${st.key}`}>
+                <span class="loop__icon" set:html={svg(st.icon)} />
+                <p><strong>{st.label}</strong> <span>{e.s[k]}</span></p>
+              </li>
+            ))}
+          </ol>
+        </div>
+      ))}
+    </div>
+    <p class="loop__foot"><span>Anything unusual comes to you.</span><button type="button" class="loop__replay" data-replay>Pause demo</button></p>
+  </div>
+</div>
+<script>
+  const reduce = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+  document.querySelectorAll<HTMLElement>('[data-loop]').forEach((root) => {
+    const tabs = Array.from(root.querySelectorAll<HTMLButtonElement>('[role="tab"]'));
+    const panels = Array.from(root.querySelectorAll<HTMLElement>('[role="tabpanel"]'));
+    let timers: number[] = [];
+    let current = 0;
+    let auto = !reduce;
+    const STEP = 850;
+    const HOLD = 6000;
+
+    const clear = () => { timers.forEach(clearTimeout); timers = []; };
+    const play = (panel: HTMLElement) => {
+      clear();
+      const msg = panel.querySelector('.loop__msg')!;
+      const items = Array.from(panel.querySelectorAll('li'));
+      if (reduce) {
+        msg.classList.add('is-on');
+        items.forEach((li) => li.classList.add('is-lit'));
+        return;
+      }
+      msg.classList.remove('is-on');
+      items.forEach((li) => li.classList.remove('is-lit', 'is-now'));
+      timers.push(window.setTimeout(() => msg.classList.add('is-on'), 100));
+      items.forEach((li, i) => {
+        timers.push(window.setTimeout(() => {
+          items.forEach((x) => x.classList.remove('is-now'));
+          li.classList.add('is-lit', 'is-now');
+        }, 600 + i * STEP));
+      });
+      const end = 600 + items.length * STEP + HOLD;
+      timers.push(window.setTimeout(() => {
+        items.forEach((x) => x.classList.remove('is-now'));
+        if (auto) select((current + 1) % tabs.length);
+      }, end));
+    };
+    const select = (i: number, focus = false) => {
+      current = i;
+      tabs.forEach((t, k) => { t.setAttribute('aria-selected', String(k === i)); t.tabIndex = k === i ? 0 : -1; });
+      panels.forEach((p, k) => { p.hidden = k !== i; if (k === i) p.tabIndex = 0; else p.removeAttribute('tabindex'); });
+      if (focus) tabs[i].focus();
+      // keep the chosen chip in view in the scrolling row, without moving the page
+      const row = tabs[i].parentElement!;
+      row.scrollTo({ left: tabs[i].offsetLeft - row.clientWidth / 2 + tabs[i].clientWidth / 2, behavior: reduce ? 'auto' : 'smooth' });
+      play(panels[i]);
+    };
+    const replay = root.querySelector<HTMLButtonElement>('[data-replay]')!;
+    const stopAuto = () => { auto = false; replay.textContent = 'Play again'; };
+    if (!auto) replay.textContent = 'Play again';
+    tabs.forEach((t, i) => {
+      t.addEventListener('click', () => { stopAuto(); select(i); });
+      t.addEventListener('keydown', (e) => {
+        const n = tabs.length;
+        const to = e.key === 'ArrowRight' ? (i + 1) % n : e.key === 'ArrowLeft' ? (i + n - 1) % n : e.key === 'Home' ? 0 : e.key === 'End' ? n - 1 : -1;
+        if (to < 0) return;
+        e.preventDefault(); stopAuto();
+        select(to, true);
+      });
+    });
+    replay.addEventListener('click', () => {
+      if (auto) { stopAuto(); clear(); panels[current].querySelectorAll('li').forEach((li) => { li.classList.add('is-lit'); li.classList.remove('is-now'); }); panels[current].querySelector('.loop__msg')!.classList.add('is-on'); return; }
+      play(panels[current]);
+    });
+    root.addEventListener('focusin', stopAuto);
+    root.addEventListener('pointerdown', stopAuto);
+    root.addEventListener('pointerenter', (e) => { if (e.pointerType === 'mouse') stopAuto(); });
+    const row = tabs[0].parentElement!;
+    const edge = () => row.classList.toggle('at-end', row.scrollLeft + row.clientWidth >= row.scrollWidth - 4);
+    row.addEventListener('scroll', edge, { passive: true });
+    window.addEventListener('resize', edge, { passive: true });
+    edge();
+
+    if (reduce || !('IntersectionObserver' in window)) { play(panels[0]); return; }
+    let started = false;
+    const io = new IntersectionObserver((entries) => {
+      const visible = entries.some((e) => e.isIntersecting);
+      if (visible && !started) { started = true; play(panels[0]); }
+      else if (!visible && started) { clear(); stopAuto(); panels[current].querySelectorAll('li').forEach((li) => li.classList.add('is-lit')); panels[current].querySelector('.loop__msg')!.classList.add('is-on'); }
+    }, { threshold: 0.3 });
+    io.observe(root);
+  });
+</script>

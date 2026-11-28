@@ -1,0 +1,70 @@
+---
+import Base from '../layouts/Base.astro';
+import Faq from '../components/Faq.astro';
+import FinalCta from '../components/FinalCta.astro';
+import { site, cta } from '../site';
+import { faqSchema, breadcrumbs, serviceSchema } from '../data/schema';
+
+const path = '/personal-ai-agents/';
+const title = 'Personal AI Agent Setup and Coaching, Cogmorphic';
+const description = 'Get your own AI agents for email, research, planning and admin, set up for how you work. Book a free call.';
+const uses = [
+  { h: 'An AI agent for email', p: 'Sort what matters, draft replies in your voice, flag what needs you.' },
+  { h: 'Research', p: 'Gather sources on a question and give you a short, checked summary.' },
+  { h: 'Planning', p: 'Turn notes and deadlines into a plan for the week.' },
+  { h: 'Admin', p: 'Forms, bookings and reminders, handled.' },
+];
+const faq = [
+  { q: 'What can a personal AI agent do?', a: 'Sort your inbox and draft replies, research a topic and summarise it, plan your week, keep track of to-dos, and handle routine admin, with you approving anything that goes out.' },
+  { q: 'Is a personal AI agent the same as an AI assistant?', a: 'Close. An AI assistant answers when you ask. A personal AI agent can also take steps for you, like drafting the reply or adding the meeting, inside limits you choose.' },
+  { q: 'Which tools do you work with?', a: 'We start with what you already use for email, calendar and notes, and set up agents around them.' },
+  { q: 'What is AI productivity coaching?', a: 'One-to-one sessions with your real tasks, so you know how to ask your agents for what you need and when to step in yourself.' },
+  { q: 'Who is it for?', a: 'Founders, freelancers and professionals who want their time back, wherever they are. Sessions run remotely by video.' },
+];
+const schema = [
+  breadcrumbs([{ name: 'Personal AI agents', path }]),
+  serviceSchema({ name: 'Personal AI agent setup and coaching', path, description, audience: 'Founders, freelancers and professionals' }),
+  faqSchema(faq),
+];
+---
+<Base title={title} description={description} schema={schema}>
+  <section class="page-hero">
+    <div class="wrap">
+      <nav class="crumbs" aria-label="Breadcrumb"><a href="/">Home</a> / Individuals</nav>
+      <h1>Personal AI agent setup and coaching</h1>
+      <p class="lede">Your own AI agents for email, research, planning and admin, set up for how you work, with coaching so you use them well.</p>
+      <a class="btn" href={cta.href}>{cta.label}</a>
+      <p class="trust"><span>Free {site.callLength} call</span> · <span>No obligation</span> · <span>You approve every change</span></p>
+    </div>
+  </section>
+
+  <section class="section" aria-labelledby="uses">
+    <div class="wrap">
+      <h2 id="uses" class="label">What can a personal AI agent take off your plate?</h2>
+      <div class="rows">
+        {uses.map((u) => <div class="row-item"><h3>{u.h}</h3><p>{u.p}</p></div>)}
+      </div>
+    </div>
+  </section>
+
+  <section class="section" aria-labelledby="how">
+    <div class="wrap">
+      <h2 id="how" class="label">How it works</h2>
+      <ol class="steps">
+        <li><h3>Audit</h3><p>A free call to see where your day goes.</p></li>
+        <li><h3>Set up</h3><p>Agents in the tools you already use, with clear limits.</p></li>
+        <li><h3>Coach</h3><p>One-to-one sessions until it feels easy.</p></li>
+      </ol>
+    </div>
+  </section>
+
+  <section class="section" aria-labelledby="personal-faq">
+    <div class="wrap">
+      <h2 id="personal-faq" class="label">Personal AI agents: questions</h2>
+      <Faq items={faq} />
+      <p class="muted mt-40">Running a team? See <a href="/ai-agents-for-business/">AI agents for business</a>.</p>
+    </div>
+  </section>
+
+  <FinalCta heading="See what a personal AI agent could do for your week." text="Free call. No obligation." />
+</Base>

@@ -1,0 +1,296 @@
+[
+  {
+    "slug": "allen-stults-company",
+    "company": "Allen & Stults Company",
+    "playbook": "insurance",
+    "title": "Allen & Stults service desk demo"
+  },
+  {
+    "slug": "rue-insurance",
+    "company": "Rue Insurance",
+    "playbook": "insurance",
+    "title": "Rue service desk demo"
+  },
+  {
+    "slug": "prime-time-insurance-agency",
+    "company": "Prime Time Insurance Agency",
+    "playbook": "insurance",
+    "title": "Prime Time service desk demo"
+  },
+  {
+    "slug": "nelson-ward-company",
+    "company": "Nelson & Ward Company",
+    "playbook": "insurance",
+    "title": "Nelson & Ward service desk demo"
+  },
+  {
+    "slug": "oliver-l-e-soden-agency",
+    "company": "Oliver L.E. Soden Agency",
+    "playbook": "insurance",
+    "title": "Soden Agency service desk demo"
+  },
+  {
+    "slug": "anton-hvac-plumbing",
+    "company": "Anton HVAC & Plumbing",
+    "playbook": "home-services",
+    "title": "Anton dispatch demo"
+  },
+  {
+    "slug": "j-w-poole-inc",
+    "company": "J.W. Poole Inc.",
+    "playbook": "home-services",
+    "title": "J.W. Poole dispatch demo"
+  },
+  {
+    "slug": "executive-roofing-systems",
+    "company": "Executive Roofing Systems",
+    "playbook": "home-services",
+    "title": "Executive Roofing dispatch demo"
+  },
+  {
+    "slug": "first-choice-plumbing-heating-ac-electrical",
+    "company": "First Choice Plumbing, Heating, AC & Electrical",
+    "playbook": "home-services",
+    "title": "First Choice dispatch demo"
+  },
+  {
+    "slug": "service-professionals",
+    "company": "Service Professionals",
+    "playbook": "home-services",
+    "title": "Service Professionals dispatch demo"
+  },
+  {
+    "slug": "wetscape",
+    "company": "Wetscape",
+    "playbook": "home-services",
+    "title": "Wetscape dispatch demo"
+  },
+  {
+    "slug": "nxt-home-improvement",
+    "company": "NXT Home Improvement",
+    "playbook": "home-services",
+    "title": "NXT dispatch demo"
+  },
+  {
+    "slug": "simon-quick-advisors",
+    "company": "Simon Quick Advisors",
+    "playbook": "wealth",
+    "title": "Simon Quick client service demo"
+  },
+  {
+    "slug": "money-at-work",
+    "company": "Money at Work",
+    "playbook": "wealth",
+    "title": "Money at Work client service demo"
+  },
+  {
+    "slug": "shorehaven-wealth-partners",
+    "company": "ShoreHaven Wealth Partners",
+    "playbook": "wealth",
+    "title": "ShoreHaven client service demo"
+  },
+  {
+    "slug": "newport-capital-group",
+    "company": "Newport Capital Group",
+    "playbook": "wealth",
+    "title": "Newport Capital client service demo"
+  },
+  {
+    "slug": "carbon-wealth-advisors",
+    "company": "Carbon Wealth Advisors",
+    "playbook": "wealth",
+    "title": "Carbon Wealth client service demo"
+  },
+  {
+    "slug": "pine-valley-investments",
+    "company": "Pine Valley Investments",
+    "playbook": "wealth",
+    "title": "Pine Valley client service demo"
+  },
+  {
+    "slug": "revolve-wealth-partners",
+    "company": "Revolve Wealth Partners",
+    "playbook": "wealth",
+    "title": "Revolve client service demo"
+  },
+  {
+    "slug": "mclaughlin-private-wealth",
+    "company": "McLaughlin Private Wealth",
+    "playbook": "wealth",
+    "title": "McLaughlin client service demo"
+  },
+  {
+    "slug": "levine-haddad-gregory",
+    "company": "Levine Haddad & Gregory",
+    "playbook": "law",
+    "title": "Levine Haddad practice support demo"
+  },
+  {
+    "slug": "law-offices-of-patrick-accisano",
+    "company": "Law Offices of Patrick Accisano",
+    "playbook": "law",
+    "title": "Accisano Law practice support demo"
+  },
+  {
+    "slug": "edwards-estate-elder-law",
+    "company": "Edwards Estate & Elder Law",
+    "playbook": "law",
+    "title": "Edwards Law practice support demo"
+  },
+  {
+    "slug": "mets-schiro-manetta",
+    "company": "Mets, Schiro & Manetta",
+    "playbook": "law",
+    "title": "Mets Schiro practice support demo"
+  },
+  {
+    "slug": "kemeny-ramp-renaud",
+    "company": "Kemeny, Ramp & Renaud",
+    "playbook": "law",
+    "title": "Kemeny Ramp practice support demo"
+  },
+  {
+    "slug": "gaines-associates-cpa",
+    "company": "Gaines & Associates CPA",
+    "playbook": "accounting",
+    "title": "Gaines CPA bookkeeping demo"
+  },
+  {
+    "slug": "mercadien",
+    "company": "Mercadien",
+    "playbook": "accounting",
+    "title": "Mercadien bookkeeping demo"
+  },
+  {
+    "slug": "wilkinguttenplan",
+    "company": "WilkinGuttenplan",
+    "playbook": "accounting",
+    "title": "WilkinGuttenplan bookkeeping demo"
+  },
+  {
+    "slug": "klatzkin-company",
+    "company": "Klatzkin & Company",
+    "playbook": "accounting",
+    "title": "Klatzkin bookkeeping demo"
+  },
+  {
+    "slug": "a-step-above-health-management-systems",
+    "company": "A Step Above Health Management Systems",
+    "playbook": "medical-billing",
+    "title": "A Step Above claims demo"
+  },
+  {
+    "slug": "midlantic-property-management",
+    "company": "Midlantic Property Management",
+    "playbook": "property",
+    "title": "Midlantic work-order demo"
+  },
+  {
+    "slug": "prc-management",
+    "company": "PRC Management",
+    "playbook": "property",
+    "title": "PRC work-order demo"
+  },
+  {
+    "slug": "premier-properties-of-new-brunswick",
+    "company": "Premier Properties of New Brunswick",
+    "playbook": "property",
+    "title": "Premier Properties work-order demo"
+  },
+  {
+    "slug": "cis-management",
+    "company": "CIS Management",
+    "playbook": "property",
+    "title": "CIS work-order demo"
+  },
+  {
+    "slug": "rcp-management",
+    "company": "RCP Management",
+    "playbook": "property",
+    "title": "RCP work-order demo"
+  },
+  {
+    "slug": "towne-country-management",
+    "company": "Towne & Country Management",
+    "playbook": "property",
+    "title": "Towne & Country work-order demo"
+  },
+  {
+    "slug": "g-william-group",
+    "company": "G. William Group",
+    "playbook": "property",
+    "title": "G. William work-order demo"
+  },
+  {
+    "slug": "distinct-engineering-solutions",
+    "company": "Distinct Engineering Solutions",
+    "playbook": "construction",
+    "title": "Distinct Engineering project admin demo"
+  },
+  {
+    "slug": "veterans-contracting",
+    "company": "Veterans Contracting",
+    "playbook": "construction",
+    "title": "Veterans Contracting project admin demo"
+  },
+  {
+    "slug": "benaka-inc",
+    "company": "Benaka Inc.",
+    "playbook": "construction",
+    "title": "Benaka project admin demo"
+  },
+  {
+    "slug": "french-parrello-associates",
+    "company": "French & Parrello Associates",
+    "playbook": "construction",
+    "title": "French & Parrello project admin demo"
+  },
+  {
+    "slug": "integrity-ironworks",
+    "company": "Integrity Ironworks",
+    "playbook": "construction",
+    "title": "Integrity Ironworks project admin demo"
+  },
+  {
+    "slug": "hydracore-inc",
+    "company": "Hydracore Inc.",
+    "playbook": "manufacturing",
+    "title": "Hydracore quality paperwork demo"
+  },
+  {
+    "slug": "mill-wright-llc",
+    "company": "Mill-Wright LLC",
+    "playbook": "logistics",
+    "title": "Mill-Wright dispatch desk demo"
+  },
+  {
+    "slug": "lmd-integrated-logistic-services",
+    "company": "LMD Integrated Logistic Services",
+    "playbook": "logistics",
+    "title": "LMD dispatch desk demo"
+  },
+  {
+    "slug": "direct-impact-logistics",
+    "company": "Direct Impact Logistics",
+    "playbook": "logistics",
+    "title": "Direct Impact dispatch desk demo"
+  },
+  {
+    "slug": "trans-american-trucking-warehouse",
+    "company": "Trans-American Trucking & Warehouse",
+    "playbook": "logistics",
+    "title": "Trans-American dispatch desk demo"
+  },
+  {
+    "slug": "jvn-trucking-llc",
+    "company": "JVN Trucking LLC",
+    "playbook": "logistics",
+    "title": "JVN Trucking dispatch desk demo"
+  },
+  {
+    "slug": "albany-county-fasteners",
+    "company": "Albany County Fasteners",
+    "playbook": "distribution",
+    "title": "Albany County Fasteners order desk demo"
+  }
+]

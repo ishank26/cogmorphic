@@ -1,0 +1,14 @@
+---
+import Base from '../layouts/Base.astro';
+import { cta } from '../site';
+---
+<Base title="Page not found, Cogmorphic" description="That page doesn't exist. Head back to the Cogmorphic home page or book a free AI audit." noindex>
+  <section class="page-hero">
+    <div class="wrap">
+      <p class="label">Error 404</p>
+      <h1>That page doesn't exist.</h1>
+      <p class="lede">It may have moved. Try the <a href="/">home page</a>, or go straight to the free audit.</p>
+      <p><a class="btn" href={cta.href}>{cta.label}</a></p>
+    </div>
+  </section>
+</Base>

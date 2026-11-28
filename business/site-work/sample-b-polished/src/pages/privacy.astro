@@ -1,0 +1,30 @@
+---
+import Base from '../layouts/Base.astro';
+import { site } from '../site';
+import { breadcrumbs } from '../data/schema';
+const title = 'Privacy, Cogmorphic';
+const description = 'What the Cogmorphic contact form collects, why, and how to ask for it to be deleted.';
+---
+<Base title={title} description={description} schema={[breadcrumbs([{ name: 'Privacy', path: '/privacy/' }])]}>
+  <section class="page-hero">
+    <div class="wrap">
+      <nav class="crumbs" aria-label="Breadcrumb"><a href="/">Home</a> / Privacy</nav>
+      <h1>Privacy</h1>
+      <p class="lede">What this site collects, and why.</p>
+    </div>
+  </section>
+  <section class="section">
+    <div class="wrap prose">
+      {/* TODO: review this note before launch, and update it if you add analytics or other tools. */}
+      <h2>What the form collects</h2>
+      <p>When you book a free AI audit, the form asks for your name and email, and if you choose, your business, phone, website and best time to call. We use this only to arrange and prepare for your call.</p>
+      <h2>Who handles it</h2>
+      <p>The form is delivered by a form service and bookings by a scheduling service, which process your details for us. We don't sell your details or share them for marketing.</p>
+      <h2>Cookies and analytics</h2>
+      <p>This site doesn't set advertising or tracking cookies. If we measure visits, we use privacy-friendly, cookie-free analytics that count page views without identifying you.</p>
+      <h2>Keeping and deleting it</h2>
+      <p>We keep your details only as long as we need them to work with you. To see or delete what we hold, email {site.email ? <a href={`mailto:${site.email}`}>{site.email}</a> : 'us'}.</p>
+      <p class="muted">Last updated: November 25, 2026</p>
+    </div>
+  </section>
+</Base>

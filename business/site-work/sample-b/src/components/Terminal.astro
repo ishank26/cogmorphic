@@ -1,0 +1,41 @@
+---
+/**
+ * Sample audit readout. The lines are ordinary HTML text (search engines and
+ * screen readers read all of it); the typing effect only reveals them in turn.
+ */
+const lines: { t: string; cls?: string; text: string }[] = [
+  { t: '$', cls: 'prompt', text: 'cogmorphic audit --sample' },
+  { t: 'FIX', cls: 'fix', text: 'New leads wait 9 hours for a reply' },
+  { t: 'FIX', cls: 'fix', text: 'Orders retyped from email into the CRM' },
+  { t: 'PASS', cls: 'ok', text: 'Invoices go out on time' },
+  { t: 'AGENT', cls: 'agent', text: 'Intake agent replies in minutes' },
+  { t: '>>', cls: 'ok', text: 'About 6 hours a week back' },
+];
+---
+<figure class="terminal" data-typing>
+  <div class="terminal__bar" aria-hidden="true"><i></i><i></i><i></i><span>audit.log</span><span class="sample-tag">Sample</span></div>
+  <div class="terminal__body">
+    <figcaption class="visually-hidden">Sample AI audit readout, for illustration only</figcaption>
+    <ol>
+      {lines.map((l) => (
+        <li><span class={l.cls}>{l.t}</span><span>{l.text}</span></li>
+      ))}
+    </ol>
+  </div>
+</figure>
+<script>
+  const reduce = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+  document.querySelectorAll<HTMLElement>('.terminal[data-typing]').forEach((term) => {
+    const items = Array.from(term.querySelectorAll('li'));
+    if (reduce || !('IntersectionObserver' in window)) {
+      items.forEach((li) => li.classList.add('is-shown'));
+      return;
+    }
+    const io = new IntersectionObserver((entries) => {
+      if (!entries.some((e) => e.isIntersecting)) return;
+      io.disconnect();
+      items.forEach((li, i) => setTimeout(() => li.classList.add('is-shown'), 220 + i * 380));
+    }, { threshold: 0.35 });
+    io.observe(term);
+  });
+</script>

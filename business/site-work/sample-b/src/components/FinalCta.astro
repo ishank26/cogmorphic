@@ -1,0 +1,17 @@
+---
+import ShaderBg from './ShaderBg.astro';
+import { cta } from '../site';
+interface Props { heading?: string; text?: string }
+const {
+  heading = 'See what agents could take off your plate.',
+  text = 'Free call. No obligation.',
+} = Astro.props;
+---
+<section class="section final" aria-labelledby="final-heading">
+  <ShaderBg variant="final" />
+  <div class="wrap">
+    <h2 id="final-heading" class="statement">{heading}</h2>
+    <p class="muted">{text}</p>
+    <a class="btn" href={cta.href}>{cta.label}</a>
+  </div>
+</section>

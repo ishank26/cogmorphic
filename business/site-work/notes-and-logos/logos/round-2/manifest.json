@@ -1,0 +1,137 @@
+[
+ {
+  "family": "Agent Loop",
+  "slug": "orbit",
+  "name": "Orbit",
+  "idea": "One smooth arc with three nodes, and the amber agent waiting in the opening. The calmest of the loop ideas.",
+  "files": {
+   "lockup_dark": "orbit-lockup-dark.svg",
+   "symbol_dark": "orbit-symbol-dark.svg",
+   "lockup_light": "orbit-lockup-light.svg",
+   "symbol_light": "orbit-symbol-light.svg",
+   "lockup_mono": "orbit-lockup-mono.svg",
+   "symbol_mono": "orbit-symbol-mono.svg",
+   "favicon": "orbit-favicon.svg"
+  }
+ },
+ {
+  "family": "Agent Loop",
+  "slug": "relay",
+  "name": "Relay",
+  "idea": "Hollow rings joined by fine links, with a solid amber agent stepping in. Lighter and more precise than the first Agent Loop.",
+  "files": {
+   "lockup_dark": "relay-lockup-dark.svg",
+   "symbol_dark": "relay-symbol-dark.svg",
+   "lockup_light": "relay-lockup-light.svg",
+   "symbol_light": "relay-symbol-light.svg",
+   "lockup_mono": "relay-lockup-mono.svg",
+   "symbol_mono": "relay-symbol-mono.svg",
+   "favicon": "relay-favicon.svg"
+  }
+ },
+ {
+  "family": "Agent Loop",
+  "slug": "square-loop",
+  "name": "Square Loop",
+  "idea": "Four nodes on an open rounded square, the amber agent closing the gap. Sturdier at small sizes.",
+  "files": {
+   "lockup_dark": "square-loop-lockup-dark.svg",
+   "symbol_dark": "square-loop-symbol-dark.svg",
+   "lockup_light": "square-loop-lockup-light.svg",
+   "symbol_light": "square-loop-symbol-light.svg",
+   "lockup_mono": "square-loop-lockup-mono.svg",
+   "symbol_mono": "square-loop-symbol-mono.svg",
+   "favicon": "square-loop-favicon.svg"
+  }
+ },
+ {
+  "family": "Pixel to Dot",
+  "slug": "dither-fade",
+  "name": "Dither Fade",
+  "idea": "A true ordered dither: the C is solid at the top and thins out toward the bottom, the same effect as your hero.",
+  "files": {
+   "lockup_dark": "dither-fade-lockup-dark.svg",
+   "symbol_dark": "dither-fade-symbol-dark.svg",
+   "lockup_light": "dither-fade-lockup-light.svg",
+   "symbol_light": "dither-fade-symbol-light.svg",
+   "lockup_mono": "dither-fade-lockup-mono.svg",
+   "symbol_mono": "dither-fade-symbol-mono.svg",
+   "favicon": "dither-fade-favicon.svg"
+  }
+ },
+ {
+  "family": "Pixel to Dot",
+  "slug": "big-pixel",
+  "name": "Big Pixel",
+  "idea": "Fewer, larger cells, each one rounder than the last, so the change from square to round reads at a glance.",
+  "files": {
+   "lockup_dark": "big-pixel-lockup-dark.svg",
+   "symbol_dark": "big-pixel-symbol-dark.svg",
+   "lockup_light": "big-pixel-lockup-light.svg",
+   "symbol_light": "big-pixel-symbol-light.svg",
+   "lockup_mono": "big-pixel-lockup-mono.svg",
+   "symbol_mono": "big-pixel-symbol-mono.svg",
+   "favicon": "big-pixel-favicon.svg"
+  }
+ },
+ {
+  "family": "Pixel to Dot",
+  "slug": "pixel-drift",
+  "name": "Pixel Drift",
+  "idea": "A solid pixel C whose last pixels lift off as dots. Work that used to be fixed, set free.",
+  "files": {
+   "lockup_dark": "pixel-drift-lockup-dark.svg",
+   "symbol_dark": "pixel-drift-symbol-dark.svg",
+   "lockup_light": "pixel-drift-lockup-light.svg",
+   "symbol_light": "pixel-drift-symbol-light.svg",
+   "lockup_mono": "pixel-drift-lockup-mono.svg",
+   "symbol_mono": "pixel-drift-symbol-mono.svg",
+   "favicon": "pixel-drift-favicon.svg"
+  }
+ },
+ {
+  "family": "Type Shift",
+  "slug": "prompt-c",
+  "name": "Prompt C",
+  "idea": "The code-font c and an amber cursor on a quiet tile, next to the two-font name. Reads as a prompt waiting for the next step.",
+  "files": {
+   "lockup_dark": "prompt-c-lockup-dark.svg",
+   "symbol_dark": "prompt-c-symbol-dark.svg",
+   "lockup_light": "prompt-c-lockup-light.svg",
+   "symbol_light": "prompt-c-symbol-light.svg",
+   "lockup_mono": "prompt-c-lockup-mono.svg",
+   "symbol_mono": "prompt-c-symbol-mono.svg",
+   "favicon": "prompt-c-favicon.svg"
+  }
+ },
+ {
+  "family": "Type Shift",
+  "slug": "split-c",
+  "name": "Split C",
+  "idea": "One c built from both fonts: the top half is the code font, the bottom half the clean sans. The name's idea in a single letter.",
+  "files": {
+   "lockup_dark": "split-c-lockup-dark.svg",
+   "symbol_dark": "split-c-symbol-dark.svg",
+   "lockup_light": "split-c-lockup-light.svg",
+   "symbol_light": "split-c-symbol-light.svg",
+   "lockup_mono": "split-c-lockup-mono.svg",
+   "symbol_mono": "split-c-symbol-mono.svg",
+   "favicon": "split-c-favicon.svg"
+  }
+ },
+ {
+  "family": "Type Shift",
+  "slug": "shift-big-pixel",
+  "name": "Shift + Big Pixel",
+  "idea": "The two-font name paired with the Big Pixel symbol, for a pixel mark with a more editorial name beside it.",
+  "files": {
+   "lockup_dark": "shift-big-pixel-lockup-dark.svg",
+   "symbol_dark": "shift-big-pixel-symbol-dark.svg",
+   "lockup_light": "shift-big-pixel-lockup-light.svg",
+   "symbol_light": "shift-big-pixel-symbol-light.svg",
+   "lockup_mono": "shift-big-pixel-lockup-mono.svg",
+   "symbol_mono": "shift-big-pixel-symbol-mono.svg",
+   "favicon": "shift-big-pixel-favicon.svg"
+  }
+ }
+]
